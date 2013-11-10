@@ -5,9 +5,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.1'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -54,6 +51,8 @@ gem "quiet_assets"
 gem "haml-rails"
 gem "unicorn"
 gem "anjlab-bootstrap-rails", ">= 3.0.0.0", require: "bootstrap-rails"
+gem 'grape'
+
 group :production do
   gem "pg"
   gem "rails_12factor"
@@ -68,7 +67,6 @@ group :development, :test do
   gem "rspec-rails"
   gem "annotator"
   gem "pry-rails"
-  gem "pry-coolline"
   gem "pry-byebug"
   gem "pry-doc"
   gem "hirb"

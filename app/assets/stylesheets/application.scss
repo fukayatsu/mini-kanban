@@ -14,3 +14,37 @@
 
 @import "twitter/bootstrap";
 
+.todolist {
+  button { @extend .btn; }
+
+  button.todo  { @extend .btn-defult; }
+  button.doing { @extend .btn-warning; }
+  button.done  { @extend .btn-success; }
+
+  .status-todo{
+    color: none;
+  }
+  .status-doing{
+    color: orange;
+  }
+  .status-done {
+    text-decoration: line-through;
+    color: grey;
+  }
+
+  form.edit {
+    display: none;
+  }
+  .editing form.edit {
+    display: block;
+  }
+
+  label.task-name {
+    display: block;
+  }
+
+  .editing label.task-name {
+    display: none;
+  }
+
+}

@@ -1,4 +1,8 @@
 MiniKanban::Application.routes.draw do
+  mount API => "/"
+
+  root to: redirect('/app')
+  resources :app, only: [:index]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

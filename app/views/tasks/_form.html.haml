@@ -1,0 +1,5 @@
+= simple_form_for(@task) do |f|
+  = f.input :name
+  = f.input :memo
+  = f.select :status, ['todo', 'doing', 'done']
+  = f.button :submit

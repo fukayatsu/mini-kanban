@@ -1,0 +1,69 @@
+!!!
+%html{"ng-app" => true}
+  %head
+    %title MiniKanban
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    .container
+      .page-header
+        %h1 tasks
+        %p.lead TODO / DOING / DONE
+      .row
+        .col-xs-12.col-md-6
+          .todolist{'ng-controller' => "TodoCtrl"}
+            sort:
+            .btn-group
+              .button.btn.btn-default{'class' => "{{activeIf('sort','status')}}", 'ng-click' => "setSort('status')"} status
+            filter:
+            .btn-group
+              .button.btn.btn-default{'class' => "{{activeIf('statusFilter',status)}}", 'ng-click' => "setStatusFilter(status)", "ng-repeat" => "status in ['todo', 'doing', 'done']"} {{status}}
+            %hr
+            sort: {{sort}}, filter: {{statusFilter}}
+            %table.table.table-bordered
+              %tr{'ng-repeat' => "task in tasks | filter:statusFilter | orderBy:sortOrder", "ng-class" => "{editing: task == editingTask}"}
+                %td
+                  %button{class: '{{task.status}}', 'ng-click' => 'nextStatus(task)' } {{task.status}}
+                %td
+                  /%input{ style: "width:62%;", placeholder: 'input what todo do', value: 'task 1' }
+                  %label.task-name{class: 'status-{{task.status}}', "ng-dblclick" => 'editTask(task)'}
+                    {{task.name}}
+                  %form.edit{ "ng-submit" => "doneEditingTask(task)" }
+                    %input{ style: "width:100%;", "ng-model" => "task.name" }
+                %td
+                  %button.btn.btn-danger{ 'ng-click' => 'removeTask(task)' }
+                    %span.glyphicon.glyphicon-trash
+              %tr
+                %form.form{ 'ng-submit' => 'addTask()' }
+                  %td{ width: '50px' }
+                  %td
+                    %input.add{ style: "width:100%;", placeholder: 'input new task', 'ng-model' => 'taskName' }
+
+                  %td{ width: '50px'}
+                    %button.btn.btn-primary Add
+            %ul
+              %li TODO:  {{countStatus('todo')}}
+              %li DOING: {{countStatus('doing')}}
+              %li DONE:  {{countStatus('done')}}
+        / /todolist
+        .col-xs-12.col-md-5.col-md-offset-1
+          %h3 usage
+          %ul
+            %li double-click to edit
+          %h3 this is made with...
+          %ul
+            %li Heroku
+            %li Ruby 2.0
+            %li Rails 4.0.1
+            %li Haml
+            %li CoffeeScript
+            %li Angularjs
+            %li Bootstrap 3 by twitter
+          %h3 view source
+          %ul
+            %li= link_to "fukayatsu/mini-kanban", "https://github.com/fukayatsu/mini-kanban"
+        / /help
+    / container
+
+

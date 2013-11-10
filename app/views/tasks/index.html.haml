@@ -1,0 +1,12 @@
+%table.table
+  %tr
+    %th id
+    %th name
+    %th memo
+    %th status
+  - @tasks.each do |task|
+    %tr
+      %td= task.id
+      %td= task.name
+      %td= task.memo
+      %td= task.status

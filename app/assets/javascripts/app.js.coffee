@@ -28,7 +28,7 @@ window.TodoCtrl = ($scope, $http) ->
     if $scope.sort == 'status'
       ['todo', 'doing', 'done'].indexOf(task.status)
     else
-      0
+      task.id
 
   $scope.setStatusFilter = (status) ->
     $scope.statusFilter = if $scope.statusFilter == status then  '' else status

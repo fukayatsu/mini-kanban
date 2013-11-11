@@ -3,6 +3,12 @@ class API < Grape::API
   version 'v1', :using => :path
   format :json
 
+  helpers do
+    def task_params
+      ActionController::Parameters.new(params).permit(:name, :memo, :status)
+    end
+  end
+
   resource :tasks do
     desc "returns all tasks"
     get do
@@ -23,7 +29,7 @@ class API < Grape::API
       requires :name, type: String
     end
     post do
-      Task.create(name: params[:name], status: 'todo')
+      Task.create(task_params.merge(status: 'todo'))
     end
 
     desc 'update a task'
@@ -31,7 +37,7 @@ class API < Grape::API
       requires :id, type: Integer
     end
     put ":id" do
-      Task.find(params[:id]).update(name: params[:name], status: params[:status])
+      Task.find(params[:id]).update(task_params)
     end
 
     desc 'delete a task'

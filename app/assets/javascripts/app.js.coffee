@@ -61,7 +61,7 @@ kanbanApp.controller('TasksCtrl', ['$scope', '$http', '$location', '$route', '$r
     $scope.originalTask = angular.extend({}, task);
 
   $scope.doneEditingTask = (task) ->
-    $http({method: 'PUT', url: "/api/v1/tasks/#{task.id}", data: {name: task.name, status: task.status}})
+    $http({method: 'PUT', url: "/api/v1/tasks/#{task.id}", data: task})
       .success ->
         $scope.editingTask = null
       .error ->
@@ -76,7 +76,7 @@ kanbanApp.controller('TasksCtrl', ['$scope', '$http', '$location', '$route', '$r
       done: 'todo'
     }[status]
 
-    $http({method: 'PUT', url: "/api/v1/tasks/#{task.id}", data: {name: task.name, status: task.status}})
+    $http({method: 'PUT', url: "/api/v1/tasks/#{task.id}", data: task})
       .error ->
         console.log 'cannot update task'
         task.status = status

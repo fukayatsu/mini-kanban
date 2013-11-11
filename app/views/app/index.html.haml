@@ -15,10 +15,15 @@
           .todolist{'ng-controller' => "TodoCtrl"}
             sort:
             .btn-group
-              .button.btn.btn-default{'class' => "{{activeIf('sort','status')}}", 'ng-click' => "setSort('status')"} status
+              .button.btn.btn-default{ |
+                'ng-class' => "{active: sort == 'status'}", |
+                'ng-click' => "setSort('status')"} status
             filter:
             .btn-group
-              .button.btn.btn-default{'class' => "{{activeIf('statusFilter',status)}}", 'ng-click' => "setStatusFilter(status)", "ng-repeat" => "status in ['todo', 'doing', 'done']"} {{status}}
+              .button.btn.btn-default{ |
+                "ng-repeat" => "status in ['todo', 'doing', 'done']", |
+                'ng-class'  => "{active: status == statusFilter}", |
+                'ng-click'  => "setStatusFilter(status)"} {{status}}
             %hr
             sort: {{sort}}, filter: {{statusFilter}}
             %table.table.table-bordered

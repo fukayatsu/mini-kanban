@@ -16,11 +16,6 @@ window.TodoCtrl = ($scope, $http) ->
     .error (data, status, headers, config) ->
       console.log 'cannot load tasks'
 
-  # ng {'class' => "{{activeIf('filter', 'todo')}}"} # with space
-  # ok {'class' => "{{activeIf('filter','todo')}}"}  # no space
-  $scope.activeIf = (key,value) ->
-    if value == $scope[key] then 'active' else ''
-
   $scope.setSort = (sort) ->
     $scope.sort = if $scope.sort == sort then '' else sort
 

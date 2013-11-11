@@ -1,18 +1,18 @@
 !!!
-%html{"ng-app" => true}
+%html
   %head
     %title MiniKanban
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
-  %body
+  %body{"ng-app" => "kanbanApp"}
     .container
       .page-header
         %h1 tasks
         %p.lead TODO / DOING / DONE
       .row
         .col-xs-12.col-md-6
-          .todolist{'ng-controller' => "TodoCtrl"}
+          .todolist{'ng-controller' => "TasksCtrl"}
             sort:
             .btn-group
               .button.btn.btn-default{ |

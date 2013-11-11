@@ -1,8 +1,16 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+kanbanApp = angular.module('kanbanApp', ['ngRoute'])
+  .config ($routeProvider, $locationProvider) ->
+    # $routeProvider
+    #   .when('/tasks',     { controller: 'TasksCtrl', templateUrl: '/template/tasks/index'})
+    #   .when('/tasks/:id', { controller: 'TasksCtrl', templateUrl: '/template/tasks/show'})
 
-window.TodoCtrl = ($scope, $http) ->
+    # $locationProvider.html5Mode(true).hashPrefix('!');
+
+
+kanbanApp.controller('TasksCtrl', ['$scope', '$http', '$location', '$route', '$routeParams', ($scope, $http, $location, $route, $routeParams) ->
   $scope.sort = null
   $scope.statusFilter = null
   $scope.tasks = []
@@ -72,3 +80,4 @@ window.TodoCtrl = ($scope, $http) ->
       .error ->
         console.log 'cannot update task'
         task.status = status
+])

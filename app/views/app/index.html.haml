@@ -27,7 +27,7 @@
             %hr
             sort: {{sort}}, filter: {{statusFilter}}
             %table.table.table-bordered
-              %tr{'ng-repeat' => "task in tasks | filter:statusFilter | orderBy:sortOrder", "ng-class" => "{editing: task == editingTask}"}
+              %tr.task{'ng-repeat' => "task in tasks | filter:statusFilter | orderBy:sortOrder", "ng-class" => "{editing: task == editingTask}"}
                 %td
                   %button{class: '{{task.status}}', 'ng-click' => 'nextStatus(task)' } {{task.status}}
                 %td
@@ -37,8 +37,9 @@
                   %form.edit{ "ng-submit" => "doneEditingTask(task)" }
                     %input{ style: "width:100%;", "ng-model" => "task.name" }
                 %td
-                  %button.btn.btn-danger{ 'ng-click' => 'removeTask(task)' }
-                    %span.glyphicon.glyphicon-trash
+                  .remove
+                    %button.btn.btn-danger{ 'ng-click' => 'removeTask(task)' }
+                      %span.glyphicon.glyphicon-trash
               %tr
                 %form.form{ 'ng-submit' => 'addTask()' }
                   %td{ width: '50px' }

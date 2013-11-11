@@ -36,22 +36,40 @@
     display: none;
   }
   .editing form.edit {
-    display: block;
+    display: inline;
   }
 
   label.task-name {
     display: block;
   }
 
-  .editing label.task-name {
+  button.edit {
+    display: inline;
+  }
+
+  .editing {
+    label.task-name,  {
+      display: none;
+    }
+    button.edit {
+      display: none;
+    }
+  }
+
+  .task {
+    .memo {
+      margin-top: 5px;
+    }
+    .save {
+      margin-top: 5px;
+    }
+  }
+
+  .only-hover {
     display: none;
   }
 
-  .remove {
-    display: none;
-  }
-
-  .task:hover .remove {
+  .task:hover .only-hover {
     display: block;
   }
 

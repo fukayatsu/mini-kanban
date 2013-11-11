@@ -35,10 +35,14 @@
                   %label.task-name{class: 'status-{{task.status}}', "ng-dblclick" => 'editTask(task)'}
                     {{task.name}}
                   %form.edit{ "ng-submit" => "doneEditingTask(task)" }
-                    %input{ style: "width:100%;", "ng-model" => "task.name" }
+                    %input.name{ style: "width:100%;", "ng-model" => "task.name" }
+                    %textarea.memo{ style: "width:100%;", "ng-model" => "task.memo" }
+                    %button.btn.btn-primary.save.pull-right{ type: 'submit' } Save
                 %td
-                  .remove
-                    %button.btn.btn-danger{ 'ng-click' => 'removeTask(task)' }
+                  .only-hover
+                    %button.btn.btn-primary.edit{ "ng-click" => "editTask(task)" }
+                      %span.glyphicon.glyphicon-edit
+                    %button.btn.btn-danger.pull-right{ 'ng-click' => 'removeTask(task)' }
                       %span.glyphicon.glyphicon-trash
               %tr
                 %form.form{ 'ng-submit' => 'addTask()' }
@@ -46,7 +50,7 @@
                   %td
                     %input.add{ style: "width:100%;", placeholder: 'input new task', 'ng-model' => 'taskName' }
 
-                  %td{ width: '50px'}
+                  %td{ width: '110px'}
                     %button.btn.btn-primary Add
             %ul
               %li TODO:  {{countStatus('todo')}}
